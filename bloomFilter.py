@@ -2,7 +2,7 @@ import random
 import mmh3
 import BitVector    #Requiere que la instalen con -> pip3 install BitVector
 
-class bloomFiler:
+class bloomFilter:
     #Inicializa las varibales en 0
     m = 0
     k = 0
@@ -34,7 +34,7 @@ class bloomFiler:
         self.v = BitVector.BitVector(size = self.m)
 
 #Test
-#a = bloomFiler(100,10)
+#a = bloomFilter(100,10)
 #a.insertar('foo')
 #print(a.revisar('foo'))
 #print(a.revisar('foo2'))
