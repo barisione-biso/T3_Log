@@ -9,7 +9,7 @@ import time
 import sys
 
 def experiment(N, m, k):
-	#generator(N)
+	generator(N)
 	tracemalloc.start()
 	start = time.time()
 
