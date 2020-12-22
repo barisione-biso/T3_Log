@@ -9,7 +9,7 @@ import time
 import sys
 
 def experiment(N, m, k):
-	generator(N)
+	#generator(N)
 	tracemalloc.start()
 	start = time.time()
 
@@ -18,15 +18,16 @@ def experiment(N, m, k):
 	vector = bloomFilter(m,k)
 	b = ""
 	for i in file:
-	    vector.insertar(i.split(" ")[0])
+		vector.insertar(i.split(" ")[0])
 	file.close()
 
 	#Revisa si hay coincidencias
 	#consultas: esto debe ir documentado en informe, porque escogimos por ejem hacer N/2 consultas, en donde la mitad estan en el archivo y la otra no.
 	#	estan en archivo
 	file = open("L.txt", "r") #no esta optimizado. es una propuesta, por eso se abre de nuevo el archivo aqui
-	existing_string_max = N // 2	
+	existing_string_max = N // 2
 	count = 0
+	fp=0
 	for i in file:
 		if count < existing_string_max:
 			#Existing strings
@@ -35,8 +36,11 @@ def experiment(N, m, k):
 			#no estan en archivo: al agregar un caracter que no esta en el conjunto de caracteres validos, 
 			#estamos seguros de que el string buscado no existe en L.
 			username=i.split(" ")[0]+'$' 
-		if vector.revisar(username): 
-			print(buscar(username))	
+		if vector.revisar(username):
+			temp = buscar(username)
+			print(temp)
+			if not temp:
+				fp +=1
 		count += 1
 	file.close()
 	#monitor
@@ -46,6 +50,8 @@ def experiment(N, m, k):
 	end = time.time()
 	elapsed = end - start
 	print(elapsed)
+	print(fp)
+	return N, elapsed, fp, peak
 
 #Inicializa los parametros de entrada
 if __name__ == "__main__":
