@@ -15,7 +15,6 @@ vector = bloomFilter(100,10)
 b = ""
 for i in file:
     vector.insertar(i.split(" ")[0])
-    #vector.printVector()
 file.close()
 
 #Revisa si hay coincidencias
